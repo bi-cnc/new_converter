@@ -1,0 +1,34 @@
+name: Update CNB Rates
+
+on:
+  schedule:
+    - cron: "0 7 * * *"   # každý den v 7:00 ráno
+  workflow_dispatch:      # možnost spustit ručně
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Fetch CNB rates
+        run: python scripts/fetch_cnb_rates.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add data/
+          git commit -m "Update CNB rates ($(date '+%Y-%m-%d'))" || echo "No changes"
+          git push
