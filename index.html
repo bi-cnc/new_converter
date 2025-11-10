@@ -224,27 +224,25 @@
       <div class="result-box">
         ${amount.toFixed(2).replace(".", ",")} ${from} = ${result.toFixed(2).replace(".", ",")} ${to}
       </div>`;
+  }
 
+  // ✅ při načtení stránky
   document.getElementById("convert").onclick = convert;
   loadRates();
 
-      // 🧭 Pokus o stabilizaci scrollu při psaní v mobilní app E15
+  // 🧭 Pokus o stabilizaci scrollu při psaní v mobilní app E15
   const amountInput = document.getElementById("amount");
   
   amountInput.addEventListener("focus", () => {
-    // Zamkneme stránku na místě
     window.scrollTo(0, 0);
     document.body.style.position = "fixed";
     document.body.style.top = "0";
     document.body.style.width = "100%";
     document.body.style.overflow = "hidden";
-  
-    // Po malém zpoždění ještě jednou "přisadíme" nahoru
     setTimeout(() => window.scrollTo(0, 0), 200);
   });
   
   amountInput.addEventListener("blur", () => {
-    // Vrátíme stránku do normálního režimu
     document.body.style.position = "";
     document.body.style.top = "";
     document.body.style.width = "";
