@@ -6,31 +6,33 @@
   <style>
     body {
       font-family: "Helvetica Neue", Arial, sans-serif;
-      background-color: #fff;   /* celé pozadí čistě bílé */
+      background-color: #fff;
       margin: 0;
       padding: 0;
       text-align: center;
+      overflow-x: hidden; /* 🚫 zabrání horizontálnímu scrollu */
     }
-
+    
     .container {
       margin: 40px auto;
-      padding: 20px 10px;
+      padding: 20px 15px;
       max-width: 600px;
       width: 100%;
+      box-sizing: border-box;
     }
-
+    
     h1 {
       font-size: 28px;
       color: #222;
       margin-bottom: 10px;
     }
-
+    
     #dateBox {
       color: #777;
       font-size: 14px;
       margin-bottom: 25px;
     }
-
+    
     label {
       display: block;
       font-weight: 600;
@@ -41,7 +43,7 @@
       margin-left: auto;
       margin-right: auto;
     }
-
+    
     input, select {
       width: 100%;
       max-width: 420px;
@@ -54,13 +56,13 @@
       display: block;
       margin: 0 auto;
     }
-
+    
     input:focus, select:focus {
       outline: none;
       border-color: #FA3A3C;
       background-color: #fff;
     }
-
+    
     button {
       display: block;
       margin: 25px auto 10px auto;
@@ -74,17 +76,17 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-
+    
     button:hover {
       background-color: #FA3A3C;
       color: #fff;
     }
-
+    
     #result {
       text-align: center;
       margin-top: 20px;
     }
-
+    
     .result-box {
       background-color: #FA3A3C;
       color: white;
@@ -94,9 +96,49 @@
       font-weight: 700;
       font-size: 18px;
     }
-
+    
     select {
       font-family: "Segoe UI Emoji", "Apple Color Emoji", Arial, sans-serif;
+    }
+    
+    /* 📱 Mobilní přizpůsobení */
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px 10px;
+        margin: 20px auto;
+      }
+    
+      h1 {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+    
+      #dateBox {
+        font-size: 13px;
+        margin-bottom: 20px;
+      }
+    
+      input, select {
+        font-size: 15px;
+        max-width: 100%;
+      }
+    
+      label {
+        max-width: 100%;
+        font-size: 14px;
+      }
+    
+      button {
+        width: 100%;
+        max-width: 280px;
+        font-size: 15px;
+        padding: 12px 0;
+      }
+    
+      .result-box {
+        font-size: 16px;
+        padding: 8px 12px;
+      }
     }
   </style>
 </head>
