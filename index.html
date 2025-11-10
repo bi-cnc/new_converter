@@ -4,55 +4,142 @@
   <meta charset="UTF-8">
   <title>Převodník měn – ČNB</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 2rem; }
-    input, select, button { margin: 0.5rem; padding: 0.5rem; }
-    button { background: #FA3A3C; color: white; border: none; border-radius: 4px; }
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      background: #fff;
+      margin: 40px auto;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 28px;
+      text-align: center;
+      color: #222;
+      margin-bottom: 25px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin: 12px 0 6px 0;
+      color: #333;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+      background-color: #fafafa;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #FA3A3C;
+      background-color: #fff;
+    }
+    button {
+      display: block;
+      margin: 25px auto 10px auto;
+      padding: 12px 24px;
+      background-color: #FA3A3C;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    button:hover {
+      background-color: #d73234;
+    }
+    #result {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .result-box {
+      background-color: #FA3A3C;
+      color: white;
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    #dateBox {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #777;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
-  <h2>Převodník měn – ČNB</h2>
-  <p>Datum: <span id="rateDate"></span></p>
+  <div class="container">
+    <h1>Převodník měn – měnová kalkulačka</h1>
+    <div id="dateBox"></div>
 
-  <p>
-    Základní měna:
+    <label for="from">Vyberte základní měnu:</label>
     <select id="from"></select>
-    Cílová měna:
-    <select id="to"></select><br>
-    Částka:
-    <input type="number" id="amount" value="1" min="0.01" step="0.01"><br>
+
+    <label for="to">Vyberte cílovou měnu:</label>
+    <select id="to"></select>
+
+    <label for="amount">Zadejte množství:</label>
+    <input type="number" id="amount" value="1" min="0.01" step="0.01">
+
     <button id="convert">Spočítat</button>
-  </p>
-  <div id="result"></div>
+    <div id="result"></div>
+  </div>
 
   <script>
     let rates = {};
     async function loadRates() {
       const res = await fetch("data/latest.json");
       rates = await res.json();
-      document.getElementById("rateDate").textContent = rates.date;
+      document.getElementById("dateBox").textContent = "Kurzovní lístek ČNB k " + rates.date;
 
       const currencies = Object.keys(rates);
       const from = document.getElementById("from");
       const to = document.getElementById("to");
       from.innerHTML = currencies.map(c => `<option>${c}</option>`).join("");
       to.innerHTML = currencies.map(c => `<option>${c}</option>`).join("");
-      from.value = "EUR"; to.value = "CZK";
+      from.value = "EUR";
+      to.value = "CZK";
     }
 
     function convert() {
       const from = document.getElementById("from").value;
       const to = document.getElementById("to").value;
       const amount = parseFloat(document.getElementById("amount").value);
-      if (!rates[from] || !rates[to]) return;
+      const resultDiv = document.getElementById("result");
+
+      if (!rates[from] || !rates[to]) {
+        resultDiv.innerHTML = "<p style='color:#FA3A3C'>Chyba kurzů</p>";
+        return;
+      }
 
       const czk = (amount / rates[from].quantity) * rates[from].rate;
       const result = (czk / rates[to].rate) * rates[to].quantity;
-      document.getElementById("result").innerHTML =
-        `<b>${amount.toFixed(2)} ${from} = ${result.toFixed(2)} ${to}</b>`;
+
+      resultDiv.innerHTML = `
+        <div class="result-box">
+          ${amount.toFixed(2)} ${from} = ${result.toFixed(2)} ${to}
+        </div>`;
     }
 
     document.getElementById("convert").onclick = convert;
     loadRates();
   </script>
 </body>
-</html>
+</html
