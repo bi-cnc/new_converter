@@ -1,0 +1,131 @@
+{
+  "date": "2025-11-09",
+  "CZK": {
+    "rate": 1,
+    "quantity": 1
+  },
+  "AUD": {
+    "rate": 13.641,
+    "quantity": 1.0
+  },
+  "BRL": {
+    "rate": 3.925,
+    "quantity": 1.0
+  },
+  "BGN": {
+    "rate": 12.442,
+    "quantity": 1.0
+  },
+  "CNY": {
+    "rate": 2.956,
+    "quantity": 1.0
+  },
+  "DKK": {
+    "rate": 3.259,
+    "quantity": 1.0
+  },
+  "EUR": {
+    "rate": 24.335,
+    "quantity": 1.0
+  },
+  "PHP": {
+    "rate": 35.582,
+    "quantity": 100.0
+  },
+  "HKD": {
+    "rate": 2.706,
+    "quantity": 1.0
+  },
+  "INR": {
+    "rate": 23.731,
+    "quantity": 100.0
+  },
+  "IDR": {
+    "rate": 1.261,
+    "quantity": 1000.0
+  },
+  "ISK": {
+    "rate": 16.645,
+    "quantity": 100.0
+  },
+  "ILS": {
+    "rate": 6.45,
+    "quantity": 1.0
+  },
+  "JPY": {
+    "rate": 13.745,
+    "quantity": 100.0
+  },
+  "ZAR": {
+    "rate": 1.213,
+    "quantity": 1.0
+  },
+  "CAD": {
+    "rate": 14.921,
+    "quantity": 1.0
+  },
+  "KRW": {
+    "rate": 1.442,
+    "quantity": 100.0
+  },
+  "HUF": {
+    "rate": 6.312,
+    "quantity": 100.0
+  },
+  "MYR": {
+    "rate": 5.039,
+    "quantity": 1.0
+  },
+  "MXN": {
+    "rate": 1.134,
+    "quantity": 1.0
+  },
+  "XDR": {
+    "rate": 28.543,
+    "quantity": 1.0
+  },
+  "NOK": {
+    "rate": 2.065,
+    "quantity": 1.0
+  },
+  "NZD": {
+    "rate": 11.828,
+    "quantity": 1.0
+  },
+  "PLN": {
+    "rate": 5.728,
+    "quantity": 1.0
+  },
+  "RON": {
+    "rate": 4.785,
+    "quantity": 1.0
+  },
+  "SGD": {
+    "rate": 16.163,
+    "quantity": 1.0
+  },
+  "SEK": {
+    "rate": 2.203,
+    "quantity": 1.0
+  },
+  "CHF": {
+    "rate": 26.133,
+    "quantity": 1.0
+  },
+  "THB": {
+    "rate": 65.053,
+    "quantity": 100.0
+  },
+  "TRY": {
+    "rate": 49.855,
+    "quantity": 100.0
+  },
+  "USD": {
+    "rate": 21.045,
+    "quantity": 1.0
+  },
+  "GBP": {
+    "rate": 27.62,
+    "quantity": 1.0
+  }
+}
