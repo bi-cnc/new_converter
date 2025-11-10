@@ -3,7 +3,10 @@ name: Update CNB Rates
 on:
   schedule:
     - cron: "0 7 * * *"   # každý den v 7:00 ráno
-  workflow_dispatch:      # možnost spustit ručně
+  workflow_dispatch:        # možnost spustit ručně
+
+permissions:
+  contents: write           # ⬅️ povolí zápis do repozitáře (klíčové!)
 
 jobs:
   build:
@@ -26,9 +29,11 @@ jobs:
         run: python scripts/fetch_cnb_rates.py
 
       - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
           git add data/
-          git commit -m "Update CNB rates ($(date '+%Y-%m-%d'))" || echo "No changes"
-          git push
+          git commit -m "Update CNB rates ($(date '+%Y-%m-%d'))" || echo "No changes to commit"
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
