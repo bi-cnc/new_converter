@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Převodník měn – ČNB</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 2rem auto; text-align: center; }
+    select, input { padding: 0.4rem; margin: 0.3rem; font-size: 16px; }
+    button { background: #FA3A3C; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; font-weight: bold; cursor: pointer; }
+    button:hover { background: #d52f33; }
+    .result { margin-top: 1rem; background: #FA3A3C; color: white; padding: 1rem; border-radius: 6px; display: inline-block; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>Převodník měn – ČNB</h2>
+  <p><label>Datum: <input type="date" id="dateInput"></label></p>
+  <p>
+    <label>Základní měna: <select id="fromCurrency"></select></label><br>
+    <label>Cílová měna: <select id="toCurrency"></select></label><br>
+    <label>Částka: <input type="number" id="amount" value="1" min="0.01" step="0.01"></label><br>
+    <button id="convertBtn">Spočítat</button>
+  </p>
+  <div id="result" class="result" style="display:none;"></div>
+
+  <script>
+    async function fetchRates(date) {
+      const url = `https://api.cnb.cz/cnbapi/exrates/daily?date=${date}`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Nepodařilo se načíst kurzy");
+      const data = await response.json();
+      const rates = { CZK: { rate: 1, amount: 1 } };
+      data.forEach(item => {
+        rates[item.code] = { rate: parseFloat(item.rate.replace(',', '.')), amount: item.amount };
+      });
+      return rates;
+    }
+
+    const fromSelect = document.getElementById('fromCurrency');
+    const toSelect = document.getElementById('toCurrency');
+    const dateInput = document.getElementById('dateInput');
+    const resultDiv = document.getElementById('result');
+    const amountInput = document.getElementById('amount');
+    const convertBtn = document.getElementById('convertBtn');
+
+    // Nastavit dnešní datum
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.value = today;
+
+    let rates = {};
+
+    async function loadRates() {
+      try {
+        rates = await fetchRates(dateInput.value);
+        const currencies = Object.keys(rates);
+        fromSelect.innerHTML = currencies.map(c => `<option>${c}</option>`).join('');
+        toSelect.innerHTML = currencies.map(c => `<option>${c}</option>`).join('');
+        fromSelect.value = 'EUR';
+        toSelect.value = 'CZK';
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+
+    loadRates();
+    dateInput.addEventListener('change', loadRates);
+
+    convertBtn.addEventListener('click', () => {
+      const from = fromSelect.value;
+      const to = toSelect.value;
+      const amount = parseFloat(amountInput.value);
+
+      if (!rates[from] || !rates[to]) {
+        alert("Chyba kurzů");
+        return;
+      }
+
+      const czkAmount = (amount / rates[from].amount) * rates[from].rate;
+      const result = (czkAmount / rates[to].rate) * rates[to].amount;
+
+      resultDiv.innerText = `${amount.toFixed(2)} ${from} = ${result.toFixed(2)} ${to}`;
+      resultDiv.style.display = 'inline-block';
+    });
+  </script>
+</body>
+</html>
