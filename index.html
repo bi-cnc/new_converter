@@ -121,45 +121,45 @@
 <script>  
   let rates = {};
 
-async function loadRates() {
-  const res = await fetch("data/latest.json");
-  rates = await res.json();
-
-  // 🗓️ převod formátu datumu z "2025-11-09" na "9. 11. 2025"
-  const [year, month, day] = rates.date.split("-");
-  const formattedDate = `${parseInt(day)}. ${parseInt(month)}. ${year}`;
-
-  document.getElementById("dateBox").textContent =
-    "Kurzovní lístek ČNB k " + formattedDate;
-
-  // 🌍 Mapa měn na emoji vlajky
-  const currencyFlags = {
-    CZK: "🇨🇿", USD: "🇺🇸", EUR: "🇪🇺", GBP: "🇬🇧", AUD: "🇦🇺", CAD: "🇨🇦",
-    CHF: "🇨🇭", CNY: "🇨🇳", JPY: "🇯🇵", PLN: "🇵🇱", HUF: "🇭🇺", NOK: "🇳🇴",
-    SEK: "🇸🇪", DKK: "🇩🇰", NZD: "🇳🇿", BRL: "🇧🇷", MXN: "🇲🇽", SGD: "🇸🇬",
-    ZAR: "🇿🇦", KRW: "🇰🇷", INR: "🇮🇳", THB: "🇹🇭", ILS: "🇮🇱", RON: "🇷🇴",
-    MYR: "🇲🇾", PHP: "🇵🇭", IDR: "🇮🇩", TRY: "🇹🇷", ISK: "🇮🇸", BGN: "🇧🇬",
-    XDR: "🌍"
-  };
-
-  // 🔍 Odeber "date" a seřaď měny abecedně (CZK necháme první)
-  let currencies = Object.keys(rates).filter(c => c !== "date" && c !== "CZK");
-  currencies = ["CZK", ...currencies.sort()];
-
-  const from = document.getElementById("from");
-  const to = document.getElementById("to");
-
-  // ✨ Vytvoření <option> s vlaječkami
-  const optionsHTML = currencies.map(c => {
-    const flag = currencyFlags[c] || "🏳️";
-    return `<option value="${c}">${flag} ${c}</option>`;
-  }).join("");
-
-  from.innerHTML = optionsHTML;
-  to.innerHTML = optionsHTML;
-  from.value = "EUR";
-  to.value = "CZK";
-}
+  async function loadRates() {
+    const res = await fetch("data/latest.json");
+    rates = await res.json();
+  
+    // 🗓️ převod formátu datumu z "2025-11-09" na "9. 11. 2025"
+    const [year, month, day] = rates.date.split("-");
+    const formattedDate = `${parseInt(day)}. ${parseInt(month)}. ${year}`;
+  
+    document.getElementById("dateBox").textContent =
+      "Kurzovní lístek ČNB k " + formattedDate;
+  
+    // 🌍 Mapa měn na emoji vlajky
+    const currencyFlags = {
+      CZK: "🇨🇿", USD: "🇺🇸", EUR: "🇪🇺", GBP: "🇬🇧", AUD: "🇦🇺", CAD: "🇨🇦",
+      CHF: "🇨🇭", CNY: "🇨🇳", JPY: "🇯🇵", PLN: "🇵🇱", HUF: "🇭🇺", NOK: "🇳🇴",
+      SEK: "🇸🇪", DKK: "🇩🇰", NZD: "🇳🇿", BRL: "🇧🇷", MXN: "🇲🇽", SGD: "🇸🇬",
+      ZAR: "🇿🇦", KRW: "🇰🇷", INR: "🇮🇳", THB: "🇹🇭", ILS: "🇮🇱", RON: "🇷🇴",
+      MYR: "🇲🇾", PHP: "🇵🇭", IDR: "🇮🇩", TRY: "🇹🇷", ISK: "🇮🇸", BGN: "🇧🇬",
+      XDR: "🌍"
+    };
+  
+    // 🔍 Odeber "date" a seřaď měny abecedně (CZK necháme první)
+    let currencies = Object.keys(rates).filter(c => c !== "date" && c !== "CZK");
+    currencies = ["CZK", ...currencies.sort()];
+  
+    const from = document.getElementById("from");
+    const to = document.getElementById("to");
+  
+    // ✨ Vytvoření <option> s vlaječkami
+    const optionsHTML = currencies.map(c => {
+      const flag = currencyFlags[c] || "🏳️";
+      return `<option value="${c}">${flag} ${c}</option>`;
+    }).join("");
+  
+    from.innerHTML = optionsHTML;
+    to.innerHTML = optionsHTML;
+    from.value = "EUR";
+    to.value = "CZK";
+  }
 
 
   function convert() {
