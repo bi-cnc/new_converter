@@ -51,17 +51,19 @@
       display: block;
       margin: 25px auto 10px auto;
       padding: 12px 24px;
-      background-color: #FA3A3C;
-      color: #fff;
-      border: none;
+      background-color: transparent;   /* průhledné pozadí */
+      color: #FA3A3C;                  /* červený text */
+      border: 2px solid #FA3A3C;       /* červený okraj */
       border-radius: 6px;
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: all 0.2s ease;
     }
+    
     button:hover {
-      background-color: #d73234;
+      background-color: #FA3A3C;       /* po najetí myší vyplněné */
+      color: #fff;                     /* a bílý text */
     }
     #result {
       text-align: center;
