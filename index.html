@@ -100,6 +100,9 @@
     select {
       font-family: "Segoe UI Emoji", "Apple Color Emoji", Arial, sans-serif;
     }
+    html, body {
+      overscroll-behavior: none; /* zamezí automatickému posunu */
+    }
     
     /* 📱 Mobilní přizpůsobení */
     @media (max-width: 480px) {
@@ -226,6 +229,18 @@
 
   document.getElementById("convert").onclick = convert;
   loadRates();
+  // Zamezí automatickému "odskrolování" při otevření klávesnice
+const amountInput = document.getElementById("amount");
+
+amountInput.addEventListener("focus", () => {
+  document.body.style.position = "fixed";
+  document.body.style.width = "100%";
+});
+
+amountInput.addEventListener("blur", () => {
+  document.body.style.position = "";
+  document.body.style.width = "";
+});
 </script>
 </body>
 </html>
