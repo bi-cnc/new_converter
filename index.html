@@ -222,9 +222,8 @@
 
     resultDiv.innerHTML = `
       <div class="result-box">
-        ${amount.toFixed(2)} ${from} = ${result.toFixed(2)} ${to}
+        ${amount.toFixed(2).replace(".", ",")} ${from} = ${result.toFixed(2).replace(".", ",")} ${to}
       </div>`;
-  }
 
   document.getElementById("convert").onclick = convert;
   loadRates();
