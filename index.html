@@ -104,44 +104,65 @@
     <div id="result"></div>
   </div>
 
-  <script>
-    let rates = {};
-    async function loadRates() {
-      const res = await fetch("data/latest.json");
-      rates = await res.json();
-      document.getElementById("dateBox").textContent = "Kurzovní lístek ČNB k " + rates.date;
+<script>  
+  let rates = {};
 
-      const currencies = Object.keys(rates);
-      const from = document.getElementById("from");
-      const to = document.getElementById("to");
-      from.innerHTML = currencies.map(c => `<option>${c}</option>`).join("");
-      to.innerHTML = currencies.map(c => `<option>${c}</option>`).join("");
-      from.value = "EUR";
-      to.value = "CZK";
+  async function loadRates() {
+    const res = await fetch("data/latest.json");
+    rates = await res.json();
+    document.getElementById("dateBox").textContent = "Kurzovní lístek ČNB k " + rates.date;
+
+    // 🌍 Mapa měn na emoji vlajky
+    const currencyFlags = {
+      CZK: "🇨🇿", USD: "🇺🇸", EUR: "🇪🇺", GBP: "🇬🇧", AUD: "🇦🇺", CAD: "🇨🇦",
+      CHF: "🇨🇭", CNY: "🇨🇳", JPY: "🇯🇵", PLN: "🇵🇱", HUF: "🇭🇺", NOK: "🇳🇴",
+      SEK: "🇸🇪", DKK: "🇩🇰", NZD: "🇳🇿", BRL: "🇧🇷", MXN: "🇲🇽", SGD: "🇸🇬",
+      ZAR: "🇿🇦", KRW: "🇰🇷", INR: "🇮🇳", THB: "🇹🇭", ILS: "🇮🇱", RON: "🇷🇴",
+      MYR: "🇲🇾", PHP: "🇵🇭", IDR: "🇮🇩", TRY: "🇹🇷", ISK: "🇮🇸", BGN: "🇧🇬",
+      XDR: "🌍"
+    };
+
+    // 🔍 Odeber "date" a seřaď měny abecedně (CZK necháme první)
+    let currencies = Object.keys(rates).filter(c => c !== "date" && c !== "CZK");
+    currencies = ["CZK", ...currencies.sort()];
+
+    const from = document.getElementById("from");
+    const to = document.getElementById("to");
+
+    // ✨ Vytvoření <option> s vlaječkami
+    const optionsHTML = currencies.map(c => {
+      const flag = currencyFlags[c] || "🏳️";
+      return `<option value="${c}">${flag} ${c}</option>`;
+    }).join("");
+
+    from.innerHTML = optionsHTML;
+    to.innerHTML = optionsHTML;
+    from.value = "EUR";
+    to.value = "CZK";
+  }
+
+  function convert() {
+    const from = document.getElementById("from").value;
+    const to = document.getElementById("to").value;
+    const amount = parseFloat(document.getElementById("amount").value);
+    const resultDiv = document.getElementById("result");
+
+    if (!rates[from] || !rates[to]) {
+      resultDiv.innerHTML = "<p style='color:#FA3A3C'>Chyba kurzů</p>";
+      return;
     }
 
-    function convert() {
-      const from = document.getElementById("from").value;
-      const to = document.getElementById("to").value;
-      const amount = parseFloat(document.getElementById("amount").value);
-      const resultDiv = document.getElementById("result");
+    const czk = (amount / rates[from].quantity) * rates[from].rate;
+    const result = (czk / rates[to].rate) * rates[to].quantity;
 
-      if (!rates[from] || !rates[to]) {
-        resultDiv.innerHTML = "<p style='color:#FA3A3C'>Chyba kurzů</p>";
-        return;
-      }
+    resultDiv.innerHTML = `
+      <div class="result-box">
+        ${amount.toFixed(2)} ${from} = ${result.toFixed(2)} ${to}
+      </div>`;
+  }
 
-      const czk = (amount / rates[from].quantity) * rates[from].rate;
-      const result = (czk / rates[to].rate) * rates[to].quantity;
-
-      resultDiv.innerHTML = `
-        <div class="result-box">
-          ${amount.toFixed(2)} ${from} = ${result.toFixed(2)} ${to}
-        </div>`;
-    }
-
-    document.getElementById("convert").onclick = convert;
-    loadRates();
-  </script>
+  document.getElementById("convert").onclick = convert;
+  loadRates();
+</script>
 </body>
-</html
+</html>
