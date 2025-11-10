@@ -3,100 +3,101 @@
 <head>
   <meta charset="UTF-8">
   <title>Převodník měn – ČNB</title>
-body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background-color: #fff;   /* celé pozadí čistě bílé */
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
+  <style>
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #fff;   /* celé pozadí čistě bílé */
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
 
-.container {
-  margin: 40px auto;
-  padding: 20px 10px;
-  max-width: 600px;
-  width: 100%;
-}
+    .container {
+      margin: 40px auto;
+      padding: 20px 10px;
+      max-width: 600px;
+      width: 100%;
+    }
 
-h1 {
-  font-size: 28px;
-  color: #222;
-  margin-bottom: 10px;
-}
+    h1 {
+      font-size: 28px;
+      color: #222;
+      margin-bottom: 10px;
+    }
 
-#dateBox {
-  color: #777;
-  font-size: 14px;
-  margin-bottom: 25px;
-}
+    #dateBox {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
 
-label {
-  display: block;
-  font-weight: 600;
-  margin: 12px 0 6px 0;
-  color: #333;
-  text-align: left;
-  max-width: 420px;
-  margin-left: auto;
-  margin-right: auto;
-}
+    label {
+      display: block;
+      font-weight: 600;
+      margin: 12px 0 6px 0;
+      color: #333;
+      text-align: left;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-input, select {
-  width: 100%;
-  max-width: 420px;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-  background-color: #fafafa;
-  box-sizing: border-box;
-  display: block;
-  margin: 0 auto;
-}
+    input, select {
+      width: 100%;
+      max-width: 420px;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      background-color: #fafafa;
+      box-sizing: border-box;
+      display: block;
+      margin: 0 auto;
+    }
 
-input:focus, select:focus {
-  outline: none;
-  border-color: #FA3A3C;
-  background-color: #fff;
-}
+    input:focus, select:focus {
+      outline: none;
+      border-color: #FA3A3C;
+      background-color: #fff;
+    }
 
-button {
-  display: block;
-  margin: 25px auto 10px auto;
-  padding: 12px 24px;
-  background-color: transparent;   /* průhledné pozadí */
-  color: #FA3A3C;
-  border: 2px solid #FA3A3C;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
+    button {
+      display: block;
+      margin: 25px auto 10px auto;
+      padding: 12px 24px;
+      background-color: transparent;
+      color: #FA3A3C;
+      border: 2px solid #FA3A3C;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
 
-button:hover {
-  background-color: #FA3A3C;
-  color: #fff;
-}
+    button:hover {
+      background-color: #FA3A3C;
+      color: #fff;
+    }
 
-#result {
-  text-align: center;
-  margin-top: 20px;
-}
+    #result {
+      text-align: center;
+      margin-top: 20px;
+    }
 
-.result-box {
-  background-color: #FA3A3C;
-  color: white;
-  display: inline-block;
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-weight: 700;
-  font-size: 18px;
-}
+    .result-box {
+      background-color: #FA3A3C;
+      color: white;
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 18px;
+    }
 
-select {
-  font-family: "Segoe UI Emoji", "Apple Color Emoji", Arial, sans-serif;
-}
+    select {
+      font-family: "Segoe UI Emoji", "Apple Color Emoji", Arial, sans-serif;
+    }
   </style>
 </head>
 <body>
