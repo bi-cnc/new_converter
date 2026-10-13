@@ -1,39 +1,39 @@
 {
-  "date": "2026-10-12",
+  "date": "2026-10-13",
   "CZK": {
     "rate": 1,
     "quantity": 1
   },
   "AUD": {
-    "rate": 15.212,
+    "rate": 15.203,
     "quantity": 1.0
   },
   "BRL": {
-    "rate": 4.369,
+    "rate": 4.344,
     "quantity": 1.0
   },
   "CNY": {
-    "rate": 3.259,
+    "rate": 3.255,
     "quantity": 1.0
   },
   "DKK": {
-    "rate": 3.263,
+    "rate": 3.261,
     "quantity": 1.0
   },
   "EUR": {
-    "rate": 24.39,
+    "rate": 24.375,
     "quantity": 1.0
   },
   "PHP": {
-    "rate": 34.754,
+    "rate": 34.71,
     "quantity": 100.0
   },
   "HKD": {
-    "rate": 2.779,
+    "rate": 2.776,
     "quantity": 1.0
   },
   "INR": {
-    "rate": 22.771,
+    "rate": 22.866,
     "quantity": 100.0
   },
   "IDR": {
@@ -41,87 +41,87 @@
     "quantity": 1000.0
   },
   "ISK": {
-    "rate": 17.881,
+    "rate": 17.896,
     "quantity": 100.0
   },
   "ILS": {
-    "rate": 7.109,
+    "rate": 7.085,
     "quantity": 1.0
   },
   "JPY": {
-    "rate": 13.751,
+    "rate": 13.779,
     "quantity": 100.0
   },
   "ZAR": {
-    "rate": 1.319,
+    "rate": 1.32,
     "quantity": 1.0
   },
   "CAD": {
-    "rate": 15.293,
+    "rate": 15.3,
     "quantity": 1.0
   },
   "KRW": {
-    "rate": 1.638,
+    "rate": 1.625,
     "quantity": 100.0
   },
   "HUF": {
-    "rate": 6.679,
+    "rate": 6.69,
     "quantity": 100.0
   },
   "MYR": {
-    "rate": 5.331,
+    "rate": 5.332,
     "quantity": 1.0
   },
   "MXN": {
-    "rate": 1.19,
+    "rate": 1.188,
     "quantity": 1.0
   },
   "XDR": {
-    "rate": 29.513,
+    "rate": 29.484,
     "quantity": 1.0
   },
   "NOK": {
-    "rate": 2.281,
+    "rate": 2.285,
     "quantity": 1.0
   },
   "NZD": {
-    "rate": 12.213,
+    "rate": 12.232,
     "quantity": 1.0
   },
   "PLN": {
-    "rate": 5.562,
+    "rate": 5.569,
     "quantity": 1.0
   },
   "RON": {
-    "rate": 4.57,
+    "rate": 4.568,
     "quantity": 1.0
   },
   "SGD": {
-    "rate": 17.038,
+    "rate": 17.023,
     "quantity": 1.0
   },
   "SEK": {
-    "rate": 2.178,
+    "rate": 2.182,
     "quantity": 1.0
   },
   "CHF": {
-    "rate": 26.191,
+    "rate": 26.186,
     "quantity": 1.0
   },
   "THB": {
-    "rate": 64.894,
+    "rate": 64.873,
     "quantity": 100.0
   },
   "TRY": {
-    "rate": 44.204,
+    "rate": 44.138,
     "quantity": 100.0
   },
   "USD": {
-    "rate": 21.809,
+    "rate": 21.788,
     "quantity": 1.0
   },
   "GBP": {
-    "rate": 28.866,
+    "rate": 28.863,
     "quantity": 1.0
   }
 }
